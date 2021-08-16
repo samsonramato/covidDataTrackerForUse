@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Coronavirus Data Tracker For USA</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+    <h1>Daily Report Based Covid-19 Data Tracker For USA</h1>
+    <p>This application lists the current number of cases reported across United States of America</p>
+
+    <div class="jumbotron bg-dark text-white">
+        <h1 class="display-4" th:text="${totalCases}"></h1>
+        <p class="lead">Total cases reported as of today</p>
+        <hr class="my-4">
+        <p>
+            <span>New cases reported since previous day:</span>
+            <span th:text="${newCases}"></span>
+        </p>
+
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>UID</th>
+            <th>ISO2</th>
+            <th>ISO3</th>
+            <th>Code3</th>
+            <th>FIPS</th>
+            <th>Admin2</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Total cases reported</th>
+            <th>Changes since last day</th>
+        </tr>
+        <tr th:each="locationStat : ${LocationState}">
+            <td th:text="${locationStat.UID}"></td>
+            <td th:text="${locationStat.iso2}"></td>
+            <td th:text="${locationStat.iso3}"></td>
+            <td th:text="${locationStat.code3}"></td>
+            <td th:text="${locationStat.FIps}"></td>
+            <td th:text="${locationStat.admin2}"></td>
+            <td th:text="${locationStat.state}"></td>
+            <td th:text="${locationStat.country}"></td>
+            <td th:text="${locationStat.latestCase}">0</td>
+            <td th:text="${locationStat.difference}">0</td>
+        </tr>
+    </table>
+</div>
+</body>
+
+</html>
